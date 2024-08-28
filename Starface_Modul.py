@@ -34,7 +34,6 @@ class Starface_Modul:
             
     class WebServerThread(threading.Thread):
         def run(self):
-            print("Thread")
             port = 24757
             server_address = ('', port)
             Starface_Modul.Programm_läuft = True
@@ -79,15 +78,8 @@ class Starface_Modul:
     ## Die Threads einstellen
         self.Thread_Kunderuftan = threading.Timer(1, self.Kunde_ruft_an)
         self.thread_webserver = Starface_Modul.WebServerThread()
-        self.thread_webserver.daemon = True
+        self.thread_webserver.daemon = False
         self.thread_webserver.start()
-        while self.Programm_läuft == True:
-            time.sleep(1)
-            print("läuft noch")
-    
-        
-
-
 
 ##### INIT ENDE
     def Kunde_ruft_an(self):
@@ -101,10 +93,18 @@ class Starface_Modul:
                         print(print1)
                         tmp_ld.close()
                         os.remove("tmp.txt")
+                    with open("Zahl.txt", "r") as Zahl_Stand_gel:
+                        Zahl_Stand = Zahl_Stand_gel.read()
+                        print(f"Zahl_Stand liegt vor der erhöhung bei: {Zahl_Stand}.")
+                        Zahl_Stand = int(Zahl_Stand) + 1
+                        print(f"Zahl_Stand liegt nach der erhöhung bei: {Zahl_Stand}.")
+                    with open("Zahl.txt", "w+") as z_schreiben:
+                        z_schreiben(Zahl_Stand)
+                        print(f"Zahl_Stand wurde auf {Zahl_Stand} aktualisiert.")
+
                 except Exception:
                     pass
                 time.sleep(1)
             print("Thread beendet: Kunde_ruft_an (def")
 
 instance = Starface_Modul("Master")
-instance.mainloop()
