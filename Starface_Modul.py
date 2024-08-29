@@ -2,7 +2,6 @@ try:
     import sys
     import time
     import os
-    import json
     from threading import Thread
     from http.server import BaseHTTPRequestHandler, HTTPServer
     import urllib.parse
@@ -99,7 +98,7 @@ class Starface_Modul:
                     print1 = "-abgefangene Telefonummer: " + self.Anruf_Telefonnummer + "-"
                     print(print1)
                     tmp_ld.close()
-                    os.remove("tmp.txt")
+                    os.remove("tmp.txt") # Das hier dann noch für die Blacklist anpassen
                 '''self.Gesperrte_Nummer = False
                 try:
                     print("else f")
