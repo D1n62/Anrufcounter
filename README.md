@@ -1,5 +1,5 @@
 # Anrufcounter
- Zählt die Anrufe die von einer Starface TK-Anlage empfangen werden
+ Zählt die Anrufe, die von einer Starface TK-Anlage empfangen werden
  - Kompatibel mit jedem Starface UCC Client der Browser URIs unterstützt.
  - Kompatibel mit Windows und MacOS
 
